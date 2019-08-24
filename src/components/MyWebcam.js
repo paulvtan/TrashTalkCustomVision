@@ -75,6 +75,7 @@ class MyWebcam extends React.Component {
             <div onClick={this.startCapturing} >
             <Webcam
                 audio={false}
+                className="cam"
                 height="100%"
                 width="100%"
                 screenshotQuality={1}

@@ -1,10 +1,11 @@
 .App {
   text-align: center;
   min-height: 100vh;
+  background-color: black;
 }
 
 .cam{
-  min-height: 100vh;
+  min-height: 99vh;
 }
 
 .big-ogga-booga{
