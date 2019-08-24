@@ -30,7 +30,7 @@ class MyWebcam extends React.Component {
 
     fetchData = (byteArray) => {
         const apiKey = '2bfbc0af59f14723a95339436208ff8b';
-        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/TrashTalk2/image'
+        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/Iteration3/image'
         fetch(apiEndpoint, {
             body: byteArray,
             headers: {
@@ -48,7 +48,7 @@ class MyWebcam extends React.Component {
                             maxPrediction = prediction
                         }
                     });
-                    if (maxPrediction.probability >= 0.7) {
+                    if (maxPrediction.probability >= 0.8) {
                         console.log(maxPrediction.tagName);
                     }
                 });
