@@ -32,7 +32,7 @@ function PlasticBottleModal(props) {
                                     <strong>Remove the Lid</strong>
                                 </Typography>
                                 <Typography color="textPrimary" component="subtitle1" align="center" gutterBottom>
-                                    <strong>Did you know that</strong> if you don't seperate the lid from a glass bottle then three people could die.
+                                    <strong>Did you know that</strong> more than 27 percent of recyclable glass ends up in landfills due to metal contamination.
                                 </Typography>
                                 
                             </CardContent>
@@ -46,7 +46,7 @@ function PlasticBottleModal(props) {
                                     <strong>Dispose of the bottle and lid in the recycle bin</strong>
                                 </Typography>
                                 <Typography color="textPrimary" component="subtitle1" align="center" gutterBottom>
-                                    <strong>Great Work!</strong> You've helped the environment.
+                                    <strong>Ka pai!</strong> You've helped the environment.
                                 </Typography>
                             </CardContent>
                         </Card>
