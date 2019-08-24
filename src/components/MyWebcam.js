@@ -48,37 +48,33 @@ class MyWebcam extends React.Component {
                     });
                     if (maxPrediction.probability >= 0.8) {
                         console.log(maxPrediction.tagName);
+                        if (maxPrediction.tagName === "Plastic Bottle") {
+                            clearInterval(this.timerId);
+                        }
                     }
                 });
             }
         });
     }
 
-    isMobileDevice = () => {
-        var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
-        return (supportsTouch);
-    };
-    
-    
 
     render() {
-        // const videoConstraints = {
-        //     width: "auto",
-        //     height: "auto",
-        //     facingMode: "environment"
-        // };
+        const videoConstraints = {
+            width: window.screen.width,
+            height: window.screen.height,
+            facingMode: "environment"
+        };
         
         return (
             <div onClick={this.startCapturing} >
             <Webcam
-                className = "cam"
                 audio={false}
                 height="100%"
-                width="auto"
+                width="100%"
                 screenshotQuality={1}
                 ref={this.setRef}
                 screenshotFormat="image/jpeg"
-                videoConstraints={{aspectRatio:window.innerWidth/window.innerHeight}}
+                videoConstraints={videoConstraints}
             />
             </div >
         );
