@@ -1,2 +1,2 @@
 # TrashTalkCustomVision
-Custom vision model for 
+Custom vision model for Datacomp 2019
