@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Bottle from "./1.jpg"
+import seperateCap from "./seperateCap.jpg"
+import disposeBottleAndLid from "./disposeBottleAndLid.jpg"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import "./../App.css"
@@ -15,41 +16,43 @@ function PlasticBottleModal(props) {
     return (
         <Modal style={{display:'flex',alignItems:'center',justifyContent:'center', margin:'20px'}} open={props.open}>
             <div style={{backgroundColor:"white", borderRadius:'1em', padding:'10px'}}>
-            <Typography align="center" component="h3" variant="h3" gutterBottom>
-                Recycling a Bottle
+            <Button style={{ position:'absolute', top:10,right:10}} onClick={props.closeModal}>
+                    X
+                </Button>
+            <Typography align="center" component="h4" variant="h4" gutterBottom>
+                <strong>Recycling a Glass Bottle</strong>
             </Typography>
+            
                 <Carousel useKeyboardArrows={true} showThumbs={false} emulateTouch={true} style={{height:'50%'}}>
                     <div>
                         <Card style={{backgroundColor: 'white'}}>
                             <CardContent>
+                                <img src={seperateCap} style={{height:'400px', width:'400px', borderRadius:'3em', padding:'20px'}}></img>
+                                <Typography color="primary" component="h4" variant="h4" align="center" gutterBottom>
+                                    <strong>Remove the Lid</strong>
+                                </Typography>
+                                <Typography color="textPrimary" component="subtitle1" align="center" gutterBottom>
+                                    <strong>Did you know that</strong> if you don't seperate the lid from a glass bottle then three people could die.
+                                </Typography>
                                 
-                                <img src={Bottle} style={{height:'auto', width:'auto'}}></img>
-                                <Typography color="textPrimary" align="center">
-                                    Dispose in
-                                </Typography>
-                                <Typography color="primary" align="center">
-                                    <strong>Recycle Bin</strong>
-                                </Typography>
                             </CardContent>
                         </Card>
                     </div>
                     <div>
                         <Card>
                             <CardContent>
-                                <img src={Bottle} style={{maxHeight:'50%', width:'auto'}}></img>
-                                <Typography color="primary" align="center">
-                                    Dispose in
+                                <img src={disposeBottleAndLid} style={{height:'400px', width:'400px', borderRadius:'3em', padding:'20px'}}></img>
+                                <Typography color="primary" component="h4" variant="h4" align="center" gutterBottom>
+                                    <strong>Dispose of the bottle and lid in the recycle bin</strong>
                                 </Typography>
-                                <Typography color="primary" align="center">
-                                    <strong>Trash Bin</strong>
+                                <Typography color="textPrimary" component="subtitle1" align="center" gutterBottom>
+                                    <strong>Great Work!</strong> You've helped the environment.
                                 </Typography>
                             </CardContent>
                         </Card>
                     </div>
                 </Carousel>
-                <Button onClick={props.closeModal}>
-                    Close me!
-                </Button>
+                
             </div>
         </Modal>
     );
