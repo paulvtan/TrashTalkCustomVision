@@ -72,7 +72,7 @@ class MyWebcam extends React.Component {
             <div onClick={this.startCapturing} className={this.isMobileDevice()?"cam":""}>
                     <Webcam
                 audio={false}
-                height={'auto'}
+                height={'100%'}
                 width={'auto'}
                 ref={this.setRef}
                 screenshotFormat="image/jpeg"
