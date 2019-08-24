@@ -55,7 +55,8 @@ class MyWebcam extends React.Component {
     }
 
     isMobileDevice = () => {
-        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+        return (supportsTouch);
     };
     
     
@@ -71,8 +72,8 @@ class MyWebcam extends React.Component {
             <div onClick={this.startCapturing} className={this.isMobileDevice()?"cam":""}>
                     <Webcam
                 audio={false}
-                height={'100%'}
-                width={'100%'}
+                height={'auto'}
+                width={'auto'}
                 ref={this.setRef}
                 screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
