@@ -20,7 +20,7 @@ class MyWebcam extends React.Component {
     };
 
     startCapturing = () => {
-        this.setState({ isCapturing: true});
+        this.setState({ isCapturing: true });
         console.log("Start Scanning.");
         this.timerId = setInterval(() => {
             const image = this.webcam.getScreenshot();
@@ -37,7 +37,7 @@ class MyWebcam extends React.Component {
 
     fetchData = (byteArray) => {
         const apiKey = '2bfbc0af59f14723a95339436208ff8b';
-        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/Iteration3/image'
+        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/TrashTalkModel/image'
         fetch(apiEndpoint, {
             body: byteArray,
             headers: {
@@ -92,7 +92,8 @@ class MyWebcam extends React.Component {
                     screenshotFormat="image/jpeg"
                     videoConstraints={videoConstraints}
                 />
-                {this.state.isCapturing ? <img src={Img} className="big-ogga-booga" alt="ooga" /> : null}
+                {this.state.isCapturing ? <img src={Img} className="big-ogga-booga" alt="" /> :
+                    <div className="scan-text">Show me your rubbish...</div>}
                 <MyModal open={this.state.openModal} closeModal={this.closeModal} />
             </div >
         );
