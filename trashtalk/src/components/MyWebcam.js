@@ -14,6 +14,7 @@ class MyWebcam extends React.Component {
 
     startCapturing = () => {
         this.isCapturing = true;
+        console.log("Start Scanning.");
         this.timerId = setInterval(() => {
             const image = this.webcam.getScreenshot();
             const byteArrayImage = this.convertToByteArray(image);
