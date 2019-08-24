@@ -73,8 +73,9 @@ class MyWebcam extends React.Component {
             <Webcam
                 className = "cam"
                 audio={false}
-                height={window.innerHeight + "px"}
-                width={window.innerWidth + "px"}
+                height="100%"
+                width="auto"
+                screenshotQuality={1}
                 ref={this.setRef}
                 screenshotFormat="image/jpeg"
                 videoConstraints={{aspectRatio:window.innerWidth/window.innerHeight}}
