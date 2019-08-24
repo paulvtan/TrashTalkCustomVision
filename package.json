@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.3.3",
+    "antd": "^3.22.0",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-button": "^1.2.1",
     "react-dom": "^16.9.0",
+    "react-responsive-carousel": "^3.1.50",
     "react-scripts": "3.1.1",
     "react-webcam": "^1.1.1"
   },

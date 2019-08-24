@@ -1,11 +1,15 @@
 import React from 'react';
 import Webcam from 'react-webcam';
+import MyModal from './PlasticBottleModal';
+import Button from '@material-ui/core/Button';
+
 
 class MyWebcam extends React.Component {
     constructor(props) {
         super(props);
         this.timerId = null;
         this.isCapturing = false;
+        this.state = { openModal: false }
     }
 
     setRef = webcam => {
@@ -19,7 +23,7 @@ class MyWebcam extends React.Component {
             const image = this.webcam.getScreenshot();
             const byteArrayImage = this.convertToByteArray(image);
             this.fetchData(byteArrayImage);
-        }, 2000);
+        }, 4000);
     }
 
     convertToByteArray = (image) => {
@@ -44,10 +48,12 @@ class MyWebcam extends React.Component {
                     data.predictions.forEach(prediction => {
                         if (prediction.probability >= maxPrediction.probability) {
                             maxPrediction = prediction
+
                         }
                     });
                     if (maxPrediction.probability >= 0.8) {
                         console.log(maxPrediction.tagName);
+                        this.setState({ openModal: true })
                     }
                 });
             }
@@ -57,8 +63,11 @@ class MyWebcam extends React.Component {
     isMobileDevice = () => {
         return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
     };
-    
-    
+
+    closeModal = () => {
+        console.log("Called");
+        this.setState({ openModal: false });
+    }
 
     render() {
         const videoConstraints = {
@@ -66,17 +75,28 @@ class MyWebcam extends React.Component {
             height: window.screen.height,
             facingMode: "environment"
         };
-        
+
         return (
-            <div onClick={this.startCapturing} className={this.isMobileDevice()?"cam":""}>
-                    <Webcam
+            <div onClick={this.startCapturing} >
+                 <Webcam
                 audio={false}
                 height={'100%'}
                 width={'100%'}
                 ref={this.setRef}
                 screenshotFormat="image/jpeg"
                 videoConstraints={videoConstraints}
-            />
+            /> 
+
+                <Button onClick={() => this.setState({ openModal: true })}>
+                    Hello
+                </Button>
+
+ 
+                    <MyModal
+                        open={this.state.openModal}
+                        closeModal={this.closeModal} />
+       
+
             </div >
         );
     }
