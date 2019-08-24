@@ -92,8 +92,8 @@ class MyWebcam extends React.Component {
                     screenshotFormat="image/jpeg"
                     videoConstraints={videoConstraints}
                 />
-                {this.state.isCapturing ? <img src={Img} className="big-ogga-booga" alt="ooga" /> :
-                    <div className="scan-text">Show me your trash...</div>}
+                {this.state.isCapturing ? <img src={Img} className="big-ogga-booga" alt="" /> :
+                    <div className="scan-text">Show me your rubbish...</div>}
                 <MyModal open={this.state.openModal} closeModal={this.closeModal} />
             </div >
         );
