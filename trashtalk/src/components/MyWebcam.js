@@ -1,6 +1,5 @@
 import React from 'react';
 import Webcam from 'react-webcam';
-import Button from 'react-bootstrap/Button';
 
 class MyWebcam extends React.Component {
     constructor(props) {
@@ -41,10 +40,8 @@ class MyWebcam extends React.Component {
             if (response.ok) {
                 response.json().then(data => {
                     var maxPrediction = data.predictions[0];
-                    console.log(data.predictions);
                     data.predictions.forEach(prediction => {
-                        if (prediction.probability >= maxPrediction.probability)
-                        {
+                        if (prediction.probability >= maxPrediction.probability) {
                             maxPrediction = prediction
                         }
                     });
@@ -62,18 +59,18 @@ class MyWebcam extends React.Component {
             height: window.screen.height,
             facingMode: "user"
         };
+
         return (
-            <div onClick={this.startCapturing}>
+            <div onClick={this.startCapturing} >
                     <Webcam
-                        audio={false}
-                        height={500}
-                        width={500}
-                        ref={this.setRef}
-                        screenshotFormat="image/jpeg"
-                        videoConstraints={videoConstraints}
-                    />
-                {/* <Button variant="primary" onClick={this.startCapturing}>Scan</Button> */}
-            </div>
+                audio={false}
+                height={'100%'}
+                width={'100%'}
+                ref={this.setRef}
+                screenshotFormat="image/jpeg"
+                videoConstraints={videoConstraints}
+            />
+            </div >
         );
     }
 }
