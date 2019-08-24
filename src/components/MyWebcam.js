@@ -1,13 +1,17 @@
 import React from 'react';
 import Webcam from 'react-webcam';
 import Img from "./../c.gif"
+import MyModal from './PlasticBottleModal';
+import Button from '@material-ui/core/Button';
+
 
 class MyWebcam extends React.Component {
     constructor(props) {
         super(props);
         this.timerId = null;
         this.state = {
-            isCapturing : false
+            isCapturing: false,
+            openModal: false
         }
     }
 
@@ -16,13 +20,13 @@ class MyWebcam extends React.Component {
     };
 
     startCapturing = () => {
-        this.setState({isCapturing:true});
+        this.setState({ isCapturing: true });
         console.log("Start Scanning.");
         this.timerId = setInterval(() => {
             const image = this.webcam.getScreenshot();
             const byteArrayImage = this.convertToByteArray(image);
             this.fetchData(byteArrayImage);
-        }, 2000);
+        }, 1500);
     }
 
     convertToByteArray = (image) => {
@@ -47,13 +51,14 @@ class MyWebcam extends React.Component {
                     data.predictions.forEach(prediction => {
                         if (prediction.probability >= maxPrediction.probability) {
                             maxPrediction = prediction
+
                         }
                     });
                     if (maxPrediction.probability >= 0.8) {
                         console.log(maxPrediction.tagName);
                         if (maxPrediction.tagName === "Plastic Bottle") {
                             clearInterval(this.timerId);
-                            this.setState({isCapturing:false});
+                            this.setState({ isCapturing: false, openModal: true });
                         }
                     }
                 });
@@ -61,6 +66,10 @@ class MyWebcam extends React.Component {
         });
     }
 
+    closeModal = () => {
+        console.log("Called");
+        this.setState({ openModal: false });
+    }
 
     render() {
         const videoConstraints = {
@@ -68,22 +77,23 @@ class MyWebcam extends React.Component {
             height: window.screen.height,
             facingMode: "environment"
         };
-        
-    
+
+
 
         return (
             <div onClick={this.startCapturing} >
-            <Webcam
-                audio={false}
-                className="cam"
-                height="100%"
-                width="100%"
-                screenshotQuality={1}
-                ref={this.setRef}
-                screenshotFormat="image/jpeg"
-                videoConstraints={videoConstraints}
-            />
-            {this.state.isCapturing?<img src={Img} className="big-ogga-booga" alt="ooga"/>:null}
+                <Webcam
+                    audio={false}
+                    className="cam"
+                    height="100%"
+                    width="100%"
+                    screenshotQuality={1}
+                    ref={this.setRef}
+                    screenshotFormat="image/jpeg"
+                    videoConstraints={videoConstraints}
+                />
+                {this.state.isCapturing ? <img src={Img} className="big-ogga-booga" alt="ooga" /> : null}
+                <MyModal open={this.state.openModal} closeModal={this.closeModal} />
             </div >
         );
     }
