@@ -30,7 +30,7 @@ class MyWebcam extends React.Component {
 
     fetchData = (byteArray) => {
         const apiKey = '2bfbc0af59f14723a95339436208ff8b';
-        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/66170156-16d7-4f5b-b575-9444c3467abc/detect/iterations/TrashTalkModel/image'
+        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/TrashTalk2/image'
         fetch(apiEndpoint, {
             body: byteArray,
             headers: {
@@ -40,12 +40,17 @@ class MyWebcam extends React.Component {
         }).then(response => {
             if (response.ok) {
                 response.json().then(data => {
-                    // console.log(data.predictions.map(x => x.));
-                    // data.predictions.forEach(prediction => {
-                        
-                    // });
-                    var maxProb = Math.max.apply(Math, data.predictions.map(function(x) {return x.probability}));
-                    console.log(data.predictions.map(function (x) {if( x.probability === maxProb) {return x;}}));
+                    var maxPrediction = data.predictions[0];
+                    console.log(data.predictions);
+                    data.predictions.forEach(prediction => {
+                        if (prediction.probability >= maxPrediction.probability)
+                        {
+                            maxPrediction = prediction
+                        }
+                    });
+                    if (maxPrediction.probability >= 0.7) {
+                        console.log(maxPrediction.tagName);
+                    }
                 });
             }
         });
@@ -53,23 +58,21 @@ class MyWebcam extends React.Component {
 
     render() {
         const videoConstraints = {
-            width: 1500,
-            height: 1500,
+            width: window.screen.width,
+            height: window.screen.height,
             facingMode: "user"
         };
         return (
-            <div>
-                <div>
+            <div onClick={this.startCapturing}>
                     <Webcam
                         audio={false}
-                        height={250}
-                        width={375}
+                        height={500}
+                        width={500}
                         ref={this.setRef}
                         screenshotFormat="image/jpeg"
                         videoConstraints={videoConstraints}
                     />
-                </div>
-                <Button variant="primary" onClick={this.startCapturing}>Scan</Button>
+                {/* <Button variant="primary" onClick={this.startCapturing}>Scan</Button> */}
             </div>
         );
     }
