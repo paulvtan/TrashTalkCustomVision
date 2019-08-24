@@ -54,15 +54,21 @@ class MyWebcam extends React.Component {
         });
     }
 
+    isMobileDevice = () => {
+        return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+    };
+    
+    
+
     render() {
         const videoConstraints = {
             width: window.screen.width,
             height: window.screen.height,
-            facingMode: "user"
+            facingMode: "environment"
         };
-
+        
         return (
-            <div onClick={this.startCapturing} >
+            <div onClick={this.startCapturing} className={this.isMobileDevice()?"cam":""}>
                     <Webcam
                 audio={false}
                 height={'100%'}
