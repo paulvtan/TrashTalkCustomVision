@@ -62,21 +62,22 @@ class MyWebcam extends React.Component {
     
 
     render() {
-        const videoConstraints = {
-            width: window.screen.width,
-            height: window.screen.height,
-            facingMode: "environment"
-        };
+        // const videoConstraints = {
+        //     width: "auto",
+        //     height: "auto",
+        //     facingMode: "environment"
+        // };
         
         return (
-            <div onClick={this.startCapturing} className="cam">
-                    <Webcam
+            <div onClick={this.startCapturing} >
+            <Webcam
+                className = "cam"
                 audio={false}
-                height={'100%'}
-                width={'auto'}
+                height={window.innerHeight + "px"}
+                width={window.innerWidth + "px"}
                 ref={this.setRef}
                 screenshotFormat="image/jpeg"
-                videoConstraints={videoConstraints}
+                videoConstraints={{aspectRatio:window.innerWidth/window.innerHeight}}
             />
             </div >
         );
