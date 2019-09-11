@@ -56,7 +56,7 @@ class MyWebcam extends React.Component {
                     });
                     if (maxPrediction.probability >= 0.75) {
                         console.log(maxPrediction.tagName);
-                        if (maxPrediction.tagName === "Plastic Bottle") {
+                        if (maxPrediction.tagName === "Glass Bottle") {
                             clearInterval(this.timerId);
                             this.setState({ isCapturing: false, openModal: true });
                         }
