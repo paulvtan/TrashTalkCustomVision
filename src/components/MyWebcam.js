@@ -37,7 +37,8 @@ class MyWebcam extends React.Component {
 
     fetchData = (byteArray) => {
         const apiKey = '2bfbc0af59f14723a95339436208ff8b';
-        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/TrashTalkModel/image'
+        const apiEndpoint = 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/Iteration5/image';
+        // 'https://australiaeast.api.cognitive.microsoft.com/customvision/v3.0/Prediction/4aab90a2-98f7-4d55-ae5f-891f11fc43ea/detect/iterations/TrashTalkModel/image'
         fetch(apiEndpoint, {
             body: byteArray,
             headers: {
